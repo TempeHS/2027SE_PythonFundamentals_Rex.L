@@ -4,7 +4,11 @@ def main():
       
       
 def parseUserVariable(variable):
-      for _ in variable:
-            print(_)
-                 
+      for i in variable:
+            if i.isupper():
+                  print("_" + i.lower(), end="")
+            else:
+                  print(i, end="")
+                  
+                  
 main()
