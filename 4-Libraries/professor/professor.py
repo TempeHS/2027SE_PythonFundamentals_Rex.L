@@ -6,7 +6,7 @@ problems = {}
 
 def main():
       user_score = 0
-      attempts = 3
+
       
       while True:
             user_input = input("Enter a level: ")
@@ -17,6 +17,7 @@ def main():
       generate_problems()
       
       for key in problems:
+            attempts = 3
             while attempts > 0:
                   try:
                         user_answer = input(f"{key}: ")
