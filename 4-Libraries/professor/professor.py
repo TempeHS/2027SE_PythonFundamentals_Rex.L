@@ -14,7 +14,7 @@ def main():
                   continue
             else:
                   break
-      generate_problems()
+      generate_problems(int(user_input))
       
       for key in problems:
             attempts = 3
@@ -34,12 +34,22 @@ def main():
       print(f"Score: {user_score}")
                   
             
-def generate_problems():
-      for i in range(problem_amount):
-            x = r.randint(0, 100)
-            y = r.randint(0, 100)
-            problems[f"{x} + {y}"] = x + y
-      
+def generate_problems(level):
+      for i in range(problem_amount + 1):
+            x = r.randint(0, pow(10, level))
+            y = r.randint(0, pow(10, level))
+            
+            current = problems[f"{x} + {y}"] = x + y
+            
+            # Check for duplicates
+            for _ in problems:
+                  if current in problems:
+                        problems.popitem()
+                  else:
+                        continue
+
+      print("Generated Problems Sucessfully")
+      print(problems)
       
 if __name__ == "__main__":
       main()
