@@ -1,19 +1,35 @@
 import sys 
 
 def main():
+      line_count = 0
+      
       try:
             file_name = sys.argv[1]
             
-            if file_name.endswith(".py"):
+            if len(sys.argv) > 2:
+                  print(len(sys.argv))
+                  raise IndexError
+            elif file_name.endswith(".py"): 
                   pass
             else:
-                  raise FileNotFoundError
-      except FileNotFoundError, IndexError:
-            sys.exit("Error: File not found")
+                  raise ValueError
             
-      with open(file_name, "r") as file:
-            lines = file.readlines()
+      except IndexError:
+            sys.exit("Too few/many command-line arguments")
       
-      print(len(lines))
+      except ValueError:
+            sys.exit("Not a python file")
+      
+      try:   
+            with open(file_name, "r") as file:
+                  for line in file:
+                        if line.startswith("#") or not line.strip():
+                              continue
+                        else:
+                              line_count += 1
+      except FileNotFoundError:
+            sys.exit("File does not exist")
+                  
+      print(f"Number of lines: {line_count}")
       
 main()
