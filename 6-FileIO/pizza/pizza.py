@@ -1,4 +1,5 @@
 import sys
+import csv
 from tabulate import tabulate as t
 
 def main():
@@ -12,8 +13,13 @@ def main():
       
       
       try:
-            with open(user_input, "r") as file:
-                  print(file.read())
+            with open(user_input, "r") as csvfile:
+                  print(csvfile)
+                  menu = csv.DictReader(csvfile)
+                  print(t(menu, headers="firstrow", tablefmt="grid"))
       except FileNotFoundError:
             sys.exit("File not found")
+            
+      
+      
 main()
