@@ -23,11 +23,11 @@ class Jar:
             self._size -= _
 
 
-      @property
+      @ property
       def capacity(self):
             return self._capacity
 
 
-      @property
+      @ property
       def size(self):
             return self._size
